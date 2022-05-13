@@ -1,0 +1,22 @@
+.Board{
+    border-color: blue;
+    border-style: solid;
+    position: absolute;
+}
+.Player{
+    position: absolute;
+    border-color: green;
+    border-style: solid;
+}
+.Bullet{
+    position: absolute;
+    border-color: purple;
+    border-style: solid;
+}
+.Enemy{
+    background: red;
+    position: absolute;
+    border-color: brown;
+    border-style: solid;
+    fill: red;
+}
