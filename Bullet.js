@@ -7,9 +7,16 @@ export default class Bullet{
         this.damage = damage;
         this.direction = direction;
         this.destroy = "no";
+        this.shouldbedestroy = false;
 
         this.height = 5;
         this.width = 5;
+    }
+    setShouldbedestroy(){
+        this.shouldbedestroy = true;
+    }
+    getshouldbedestroy(){
+        return this.shouldbedestroy;
     }
     getX(){
         return this.x;

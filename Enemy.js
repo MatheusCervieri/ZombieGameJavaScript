@@ -8,6 +8,9 @@ export default class Enemy{
         this.speed = speed;
         this.size = size;
     }
+    getDamage(){
+        return this.damage;
+    }
     getDiv(){
         const enemydiv = document.createElement("div");
         enemydiv.style.height = this.size + "px";
@@ -17,6 +20,33 @@ export default class Enemy{
         enemydiv.className = "Enemy";
         enemydiv.textContent = this.life;
         return enemydiv;
+    }
+    getShouldbedestroy(){
+        if(this.life <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    setEnemylife(damage){
+        this.life = this.life - damage;
+    }
+    move(target){
+        if(target.getX() > this.x){
+            this.x = this.x + this.speed;
+        }
+        if(target.getX() < this.x){
+            this.x = this.x - this.speed;
+        }
+        if(target.getY() < this.y){
+            this.y = this.y - this.speed;
+        }
+        if(target.getY() > this.y){
+            this.y = this.y + this.speed;
+        }
     }
     colideWith(colideobject){
         if (this.x < colideobject.getX() + colideobject.getWidth() &&

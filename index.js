@@ -6,7 +6,7 @@ import EnemyController from "./EnemyController.js";
 let boardheight = 700;
 let boardwidth = 700;
 const mainboard = new Board(boardheight,boardwidth);
-const player1 = new Player(0,0,1,10);
+const player1 = new Player(Math.random() * boardwidth,Math.random() * boardheight,1,10,3);
 const bulletcontroller = new BulletController(boardheight, boardwidth);
 const enemycontroller = new EnemyController(boardheight,boardwidth);
 enemycontroller.addEnemy();
@@ -32,6 +32,7 @@ function drawDivs()
         mainboarddiv.appendChild(bulletdiv);
     })
     //draw enemies. 
+    enemycontroller.removeEnemies();
     const enemiesarray = enemycontroller.getEnemies();
     enemiesarray.forEach((enemi) => {
         const enemidiv = enemi.getDiv();
@@ -41,10 +42,29 @@ function drawDivs()
 
     //checkcolide enimes
     enemiesarray.forEach((enemi) => {
+
+        //enemi colide with bullets
         bulletsarray.forEach((bullet) => {
-            enemi.colideWith(bullet);
+            if(enemi.colideWith(bullet) == true){
+                bullet.setShouldbedestroy();
+                enemi.setEnemylife(player1.getDamage());
+            };
         })
-       
+        //enemi colide with players;
+        if (enemi.colideWith(player1)){
+           player1.receiveDamage(enemi.getDamage());
+           if(player1.getLife() <= 0)
+           {
+               alert("GAME OVER - PRESS F5 TO REPLAY");
+           }
+           player1.setX(Math.random() * boardwidth - 50);
+           player1.setY(Math.random() * boardheight - 50);
+        }
+    })
+
+    //moveenimes
+    enemiesarray.forEach((enemi) => {
+        enemi.move(player1);
     })
 }
 function enemySpawn(){

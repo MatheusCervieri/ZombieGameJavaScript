@@ -1,13 +1,41 @@
 export default class Player{
-    constructor(x,y,damage,speed)
+    constructor(x,y,damage,speed,health)
     {
         this.x = x;
         this.y = y;
+        this.life = health;
         this.damage = damage;
         this.speed = speed;
         this.height = 25;
         this.width = 25; 
         this.direction = "down"
+    }
+    receiveDamage(damage){
+        this.life = this.life - damage;
+    }
+    getLife(){
+        return this.life;
+    }
+    getX(){
+        return this.x;
+    }
+    setX(x){
+        this.x = x; 
+    }
+    setY(y){
+        this.y = y;
+    }
+    getY(){
+        return this.y;
+    }
+    getWidth(){
+        return this.width;
+    }
+    getHeight(){
+        return this.height;
+    }
+    getDamage(){
+        return this.damage;
     }
     getPlayerDiv(){
         const playerddiv = document.createElement("div");
@@ -25,10 +53,12 @@ export default class Player{
         document.body.addEventListener("keydown", (key) =>{
             if(key.key == "r")
             {
+
                 bulletcontroller.shoot(this.x, this.y, 1000, 12, this.direction);
             }
             if(key.key == "w")
             {
+                console.log("a");
                 this.direction = "up";
                 if(this.y <= 0)
                 {

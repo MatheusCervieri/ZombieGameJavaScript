@@ -6,13 +6,21 @@ export default class BulletController{
     {
         this.boardheight = boardheight;
         this.boardwidth = boardwidth;
+        
     }
     shoot(x,y,speed,damage, direction)
     {
         this.bullets.push(new Bullet(x,y,damage,speed, direction));
     }
+    destroy(){
+     
+    }
     removeBullets(){
         this.bullets.forEach((bullet) => {
+            if(bullet.getshouldbedestroy() == true)
+            {
+                this.bullets.splice(this.bullets.indexOf(bullet), 1);
+            }
             if(bullet.getX() <= 0)
             {
                 this.bullets.splice(this.bullets.indexOf(bullet), 1);
