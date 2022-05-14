@@ -8,8 +8,21 @@ let boardwidth = 700;
 const mainboard = new Board(boardheight,boardwidth);
 const player1 = new Player(Math.random() * boardwidth,Math.random() * boardheight,1,10,3);
 const bulletcontroller = new BulletController(boardheight, boardwidth);
-const enemycontroller = new EnemyController(boardheight,boardwidth);
+const enemycontroller = new EnemyController(boardheight,boardwidth);7
 enemycontroller.addEnemy();
+
+
+//Create Panel
+const panelinformation = document.createElement("div");
+panelinformation.className = "Panel";
+panelinformation.style.height = boardheight/8 + "px";
+panelinformation.style.width = boardwidth + "px";
+panelinformation.style.left = "7px";
+panelinformation.style.top = "710px";
+document.body.appendChild(panelinformation);
+const lifediv = document.createElement("div");
+panelinformation.appendChild(lifediv);
+lifediv.textContent = "Health: " + player1.getLife();
 
 const mainboarddiv = mainboard.getBoardDiv();
 console.log(mainboarddiv);

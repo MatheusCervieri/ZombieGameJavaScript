@@ -3,6 +3,11 @@
     border-style: solid;
     position: absolute;
 }
+.Panel{
+    border-color: orange;
+    border-style: solid;
+    position: absolute;
+}
 .Player{
     position: absolute;
     border-color: green;
